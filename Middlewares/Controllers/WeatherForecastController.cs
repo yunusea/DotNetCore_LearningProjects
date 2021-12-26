@@ -26,9 +26,31 @@ namespace Middlewares.Controllers
 
 
             //Burada bir exception oluşacak ve middleware içerisinde ki catch bloğuna düşecek otomatik olarak.
-            throw new Exception("Test Hatası");
+            //throw new Exception("Test Hatası");
 
             return "Ok";
         }
+
+        [HttpGet("Product")]
+        public Product GetProduct()
+        {
+            return new Product()
+            {
+                Id = 1,
+                ProductName = "PC"
+            };
+        }
+
+        [HttpPost("Product")]
+        public string CreateProduct([FromBody]Product product)
+        {
+            return "Ürün Oluşturuldu !";
+        }
+    }
+
+    public class Product
+    {
+        public int Id { get; set; }
+        public string ProductName { get; set; }
     }
 }

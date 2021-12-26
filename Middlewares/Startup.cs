@@ -47,6 +47,7 @@ namespace Middlewares
             app.UseHttpsRedirection();
 
             app.UseMiddleware<ExceptionHandlerMiddleware>();
+            app.UseMiddleware<RequestResponseMiddleware>();
 
             app.UseRouting();
 
