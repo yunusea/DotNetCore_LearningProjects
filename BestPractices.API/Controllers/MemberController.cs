@@ -32,5 +32,11 @@ namespace BestPractices.API.Controllers
             return memberService.GetMemberById(Id);
         }
 
+        [HttpPost]
+        public MemberDVO CreateMember(MemberDVO Member)
+        {
+            return Member;
+        }
+
     }
 }

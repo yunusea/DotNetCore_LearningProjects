@@ -6,6 +6,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using BestPractices.API.Extensions;
 using BestPractices.API.Services;
+using FluentValidation;
+using BestPractices.API.Models;
+using BestPractices.API.Validations;
+using FluentValidation.AspNetCore;
 
 namespace BestPractices.API
 {
@@ -22,7 +26,8 @@ namespace BestPractices.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddFluentValidation(x => x.RunDefaultMvcValidationAfterFluentValidationExecutes = false); //MVC Defalt Validation Close
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BestPractices.API", Version = "v1" });
@@ -34,11 +39,14 @@ namespace BestPractices.API
             //Add to AutoMapper Service Extension
             services.ConfigureMapping();
 
+            //Add FluentValidator for "MemberDVO"
+            services.AddTransient<IValidator<MemberDVO>, MemberValidator>();
+
             services.AddScoped<IMemberService, MemberService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
