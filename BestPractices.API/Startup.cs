@@ -58,6 +58,9 @@ namespace BestPractices.API
             //Custom HealthCheck Configure File include in project
             app.UseCustomHealthCheck();
 
+            //DotNet Core Response Caching activated in Project
+            app.UseResponseCaching();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

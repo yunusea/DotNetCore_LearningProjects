@@ -26,6 +26,7 @@ namespace BestPractices.API.Controllers
             return configuration["ReadMe"].ToString();
         }
 
+        [ResponseCache(Duration = 10)] //This Attribute for 10 Second caching
         [HttpGet("Id")]
         public MemberDVO GetMemberById(int Id)
         {
