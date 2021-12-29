@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using BestPractices.API.Extensions;
+using BestPractices.API.Services;
 
 namespace BestPractices.API
 {
@@ -29,6 +30,11 @@ namespace BestPractices.API
 
             //Add to Healthcheck service
             services.AddHealthChecks();
+
+            //Add to AutoMapper Service Extension
+            services.ConfigureMapping();
+
+            services.AddScoped<IMemberService, MemberService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

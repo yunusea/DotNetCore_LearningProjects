@@ -4,4 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BestPractices.API.Data.Models\BestPractices.API.Data.Models.csproj" />
+    <ProjectReference Include="..\BestPractices.API.Models\BestPractices.API.Models.csproj" />
+  </ItemGroup>
+
 </Project>
