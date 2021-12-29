@@ -10,6 +10,7 @@ using FluentValidation;
 using BestPractices.API.Models;
 using BestPractices.API.Validations;
 using FluentValidation.AspNetCore;
+using System;
 
 namespace BestPractices.API
 {
@@ -43,6 +44,12 @@ namespace BestPractices.API
             services.AddTransient<IValidator<MemberDVO>, MemberValidator>();
 
             services.AddScoped<IMemberService, MemberService>();
+
+            services.AddHttpClient("fongogoapi", config =>
+            {
+                config.BaseAddress = new Uri("http://api.fongogo.com");
+                config.DefaultRequestHeaders.Add("Authorization","Bearer 123321123");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
